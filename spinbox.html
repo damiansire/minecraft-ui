@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector de Valores Minecraft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #222;
+            font-family: 'Press Start 2P', monospace;
+        }
+
+        .value-selector-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .value-selector-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ddd;
+            font-size: 0.8em;
+            text-shadow: 1px 1px 0 #000;
+            text-align: center;
+        }
+
+        .value-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background-color: #111;
+            padding: 5px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .value-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 3px;
+            transition: background-color 0.2s ease;
+            font-family: 'Press Start 2P', monospace;
+        }
+
+        .value-button:hover {
+            background-color: #50fa7b;
+            color: #111;
+        }
+
+        .value-display {
+            color: #fff;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 0 10px;
+            width: 4em;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* Estilos adicionales */
+        .value-selector {
+            padding: 8px;
+            border-radius: 8px;
+            border: 3px solid #3b82f6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .value-button {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 1.1em;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .value-button:hover {
+            background-color: #6ee7b7;
+            color: #111;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .value-display {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #ffdb58;
+            text-shadow: 1px 1px 2px #000;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #374151;
+            border: 2px solid #4b5563;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 5em;
+            /* Aumenta el ancho para acomodar la entrada */
+        }
+
+        /* Estilo para el input dentro del display */
+        .value-input {
+            width: 100%;
+            /* El input ocupa todo el ancho del contenedor */
+            padding: 0;
+            margin: 0;
+            border: none;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #ffdb58;
+            background-color: transparent;
+            /* Hace el fondo del input transparente */
+            font-family: 'Press Start 2P', monospace;
+            /* Usa la misma fuente */
+            outline: none;
+            /* Elimina el borde por defecto del input */
+            height: 1.5em;
+            /* Asegura que el input tenga la misma altura que el display */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="value-selector-container">
+        <label for="music-volume">Music Volume (0-100)</label>
+        <div class="value-selector">
+            <button class="value-button" data-action="decrease">-</button>
+            <div class="value-display">
+                <input type="text" class="value-input" value="100" min="0" max="100">
+            </div>
+            <button class="value-button" data-action="increase">+</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.value-selector-container');
+        const valueDisplay = document.querySelector('.value-display');
+        const decreaseButton = document.querySelector('[data-action="decrease"]');
+        const increaseButton = document.querySelector('[data-action="increase"]');
+        const valueInput = document.querySelector('.value-input'); // Obtén el input
+
+
+        let currentValue = 100;
+
+        valueInput.value = currentValue;  // Inicializa el valor del input
+
+        decreaseButton.addEventListener('click', () => {
+            currentValue = Math.max(0, currentValue - 1);
+            valueInput.value = currentValue; // Actualiza el valor del input
+        });
+
+        increaseButton.addEventListener('click', () => {
+            currentValue = Math.min(100, currentValue + 1);
+            valueInput.value = currentValue; // Actualiza el valor del input
+        });
+
+        // Agrega un evento de escucha para el input para manejar la entrada directa
+        valueInput.addEventListener('change', () => {
+            let newValue = parseInt(valueInput.value);
+            if (isNaN(newValue)) {
+                newValue = 0; // Si no es un número, establece el valor a 0
+            }
+            currentValue = Math.max(0, Math.min(100, newValue)); // Valida el rango
+            valueInput.value = currentValue; // Actualiza el input con el valor validado
+        });
+    </script>
+</body>
+
+</html>
