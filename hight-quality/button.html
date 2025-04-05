@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones Estilo Minecraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo adicional para simular el borde 3D sutil */
+        .minecraft-button {
+            border-top: 2px solid rgba(255, 255, 255, 0.4);
+            /* Borde superior claro */
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            /* Borde izquierdo claro */
+            border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+            /* Borde inferior oscuro */
+            border-right: 2px solid rgba(0, 0, 0, 0.4);
+            /* Borde derecho oscuro */
+            /* Asegurarse de que el padding no interfiera con el borde */
+            background-clip: padding-box;
+        }
+
+        /* Estilo al presionar el botón */
+        .minecraft-button:active {
+            border-top: 2px solid rgba(0, 0, 0, 0.4);
+            /* Borde superior oscuro */
+            border-left: 2px solid rgba(0, 0, 0, 0.4);
+            /* Borde izquierdo oscuro */
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            /* Borde inferior claro */
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            /* Borde derecho claro */
+            transform: translate(1px, 1px);
+            /* Pequeño desplazamiento al presionar */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-800 flex items-center justify-center min-h-screen font-sans">
+
+    <div class="grid grid-cols-2 gap-4 p-8 bg-gray-900 bg-opacity-50 rounded-lg max-w-2xl w-full">
+        <h2 class="col-span-2 text-center text-white text-xl mb-4">Accessibility Settings</h2>
+
+        <button
+            class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-full transition duration-150 ease-in-out">
+            Narrator : OFF
+        </button>
+        <button
+            class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-full transition duration-150 ease-in-out">
+            Show Subtitles : ON
+        </button>
+
+        <button
+            class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-full transition duration-150 ease-in-out">
+            High Contrast : OFF
+        </button>
+        <button
+            class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-full transition duration-150 ease-in-out">
+            Auto - Jump : OFF
+        </button>
+
+        <button
+            class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-full transition duration-150 ease-in-out">
+            Text Background : Everywhere
+        </button>
+        <button
+            class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-full transition duration-150 ease-in-out">
+            Chat Text Opacity : 100 %
+        </button>
+
+        <div class="col-span-2 flex justify-center mt-4">
+            <button
+                class="minecraft-button bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 w-1/2 transition duration-150 ease-in-out">
+                Done
+            </button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
