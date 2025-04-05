@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo de Input Minecraft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #222; /* Un gris oscuro de fondo */
+            font-family: 'Press Start 2P', monospace; /* Fuente estilo Minecraft */
+        }
+
+        .input-container {
+            margin-bottom: 20px; /* Espacio entre los inputs */
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ddd; /* Texto casi blanco */
+            font-size: 0.8em; /* Tamaño de fuente más pequeño */
+            text-shadow: 1px 1px 0 #000; /* Sombra del texto para mejor legibilidad */
+        }
+
+        .minecraft-input {
+            padding: 10px;
+            border: 2px solid #333; /* Borde más oscuro */
+            background-color: #111; /* Fondo negro */
+            color: #fff; /* Texto blanco */
+            font-family: 'Press Start 2P', monospace; /* Fuente estilo Minecraft */
+            font-size: 1em; /* Tamaño de fuente base */
+            width: 250px; /* Ancho fijo */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+            outline: none; /* Elimina el borde de enfoque predeterminado */
+        }
+
+        .minecraft-input:focus {
+            border-color: #50fa7b; /* Verde neón al hacer foco */
+            box-shadow: 0 0 10px rgba(80, 250, 123, 0.5); /* Resplandor al hacer foco */
+        }
+
+        .minecraft-input::placeholder {
+            color: #555; /* Color del placeholder más oscuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <label for="server-name">Server Name</label>
+        <input type="text" id="server-name" class="minecraft-input" placeholder="Enter server name">
+    </div>
+    <div class="input-container">
+        <label for="server-address">Server Address</label>
+        <input type="text" id="server-address" class="minecraft-input" placeholder="Enter server address">
+    </div>
+</body>
+</html>
