@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Deslizante FOV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para el track y el thumb del slider */
+        /* Es necesario para una personalización más profunda que la que permite Tailwind por defecto */
+        input[type=range] {
+            -webkit-appearance: none;
+            /* Override default look */
+            appearance: none;
+            width: 100%;
+            /* Full width */
+            height: 8px;
+            /* Specified height */
+            background: #555;
+            /* Dark grey background */
+            outline: none;
+            /* Remove outline */
+            opacity: 0.9;
+            /* Slightly transparent */
+            -webkit-transition: .2s;
+            /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+            border-radius: 4px;
+            /* Bordes redondeados para el track */
+            border: 1px solid #333;
+            /* Borde sutil */
+        }
+
+        input[type=range]:hover {
+            opacity: 1;
+            /* Fully opaque on hover */
+        }
+
+        /* Estilo para el thumb (el control deslizante) en WebKit/Blink */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* Override default look */
+            appearance: none;
+            width: 16px;
+            /* Set a specific slider handle width */
+            height: 16px;
+            /* Slider handle height */
+            background: #ccc;
+            /* Light grey background */
+            cursor: pointer;
+            /* Cursor on hover */
+            border-radius: 2px;
+            /* Ligeramente redondeado */
+            border: 1px solid #aaa;
+            /* Borde sutil */
+        }
+
+        /* Estilo para el thumb (el control deslizante) en Firefox */
+        input[type=range]::-moz-range-thumb {
+            width: 16px;
+            /* Set a specific slider handle width */
+            height: 16px;
+            /* Slider handle height */
+            background: #ccc;
+            /* Light grey background */
+            cursor: pointer;
+            /* Cursor on hover */
+            border-radius: 2px;
+            /* Ligeramente redondeado */
+            border: 1px solid #aaa;
+            /* Borde sutil */
+        }
+
+        /* Contenedor principal para centrar y dar fondo */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #222;
+            /* Fondo oscuro para contraste */
+            font-family: 'Inter', sans-serif;
+            /* Fuente Inter */
+        }
+
+        .slider-container {
+            /* Ancho similar al botón de la imagen */
+            max-width: 300px;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container bg-zinc-700 p-3 rounded border border-zinc-800 shadow-md text-center">
+        <label for="fovSlider" class="block text-zinc-200 text-sm mb-2" id="fovLabel">
+            FOV: Normal (70)
+        </label>
+        <input type="range" id="fovSlider" name="fov" min="30" max="110" value="70"
+            class="w-full h-2 bg-zinc-600 rounded cursor-pointer">
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const slider = document.getElementById('fovSlider');
+        const label = document.getElementById('fovLabel');
+
+        // Función para actualizar la etiqueta basada en el valor del slider
+        function updateFovLabel() {
+            const value = parseInt(slider.value); // Obtener el valor numérico
+            let description = '';
+
+            // Determinar la descripción basada en el valor (similar a Minecraft)
+            if (value <= 50) {
+                description = 'Muy Bajo';
+            } else if (value <= 65) {
+                description = 'Bajo';
+            } else if (value <= 75) {
+                description = 'Normal';
+            } else if (value <= 90) {
+                description = 'Alto';
+            } else if (value < 110) {
+                description = 'Muy Alto';
+            } else {
+                description = 'Quake Pro'; // Valor máximo
+            }
+
+            // Actualizar el texto de la etiqueta
+            label.textContent = `FOV: ${description} (${value})`;
+        }
+
+        // Añadir un event listener para el evento 'input' (se dispara continuamente mientras se desliza)
+        slider.addEventListener('input', updateFovLabel);
+
+        // Llamar a la función inicialmente para establecer la etiqueta correcta al cargar
+        updateFovLabel();
+    </script>
+
+</body>
+
+</html>
