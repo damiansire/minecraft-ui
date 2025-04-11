@@ -50,6 +50,28 @@ function extractCSS(htmlFilePath, cssOutputPath) {
     };
 }
 
+// Function to find all HTML files recursively
+function findHtmlFiles(dir) {
+    let results = [];
+    const files = fs.readdirSync(dir);
+    
+    files.forEach(file => {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+        
+        if (stat.isDirectory()) {
+            // Skip node_modules and dist directories
+            if (file !== 'node_modules' && file !== 'dist') {
+                results = results.concat(findHtmlFiles(filePath));
+            }
+        } else if (file.endsWith('.html')) {
+            results.push(filePath);
+        }
+    });
+    
+    return results;
+}
+
 // Function to process all HTML files in a directory
 function processDirectory(inputDir, outputDir) {
     // Make sure output directory exists
@@ -57,37 +79,44 @@ function processDirectory(inputDir, outputDir) {
         fs.mkdirSync(outputDir, { recursive: true });
     }
     
-    // Read all HTML files in input directory
-    const files = fs.readdirSync(inputDir);
+    // Find all HTML files recursively
+    const htmlFiles = findHtmlFiles(inputDir);
     
-    files.forEach(file => {
-        if (file.endsWith('.html')) {
-            const inputPath = path.join(inputDir, file);
-            const cssOutputPath = path.join(outputDir, file.replace('.html', '.css'));
-            const htmlOutputPath = path.join(outputDir, file);
+    htmlFiles.forEach(filePath => {
+        const file = path.basename(filePath);
+        const folderName = file.replace('.html', '');
+        const folderPath = path.join(outputDir, folderName);
+        
+        // Create folder for this HTML file
+        if (!fs.existsSync(folderPath)) {
+            fs.mkdirSync(folderPath, { recursive: true });
+        }
+        
+        const cssOutputPath = path.join(folderPath, `${folderName}.css`);
+        const htmlOutputPath = path.join(folderPath, file);
+        
+        try {
+            const { css, html } = extractCSS(filePath, cssOutputPath);
             
-            try {
-                const { css, html } = extractCSS(inputPath, cssOutputPath);
-                
-                // Save extracted CSS
-                fs.writeFileSync(cssOutputPath, css);
-                
-                // Save updated HTML
-                fs.writeFileSync(htmlOutputPath, html);
-                
-                console.log(`Processed ${file}:`);
-                console.log(`- CSS saved to ${cssOutputPath}`);
-                console.log(`- Updated HTML saved to ${htmlOutputPath}`);
-            } catch (error) {
-                console.error(`Error processing ${file}:`, error.message);
-            }
+            // Save extracted CSS
+            fs.writeFileSync(cssOutputPath, css);
+            
+            // Save updated HTML
+            fs.writeFileSync(htmlOutputPath, html);
+            
+            console.log(`Processed ${file}:`);
+            console.log(`- Created folder: ${folderPath}`);
+            console.log(`- CSS saved to ${cssOutputPath}`);
+            console.log(`- Updated HTML saved to ${htmlOutputPath}`);
+        } catch (error) {
+            console.error(`Error processing ${file}:`, error.message);
         }
     });
 }
 
 // Input and output directories
-const inputDir = path.join(__dirname, 'test', 'input');
-const outputDir = path.join(__dirname, 'test', 'output');
+const inputDir = __dirname; // Use the project root directory
+const outputDir = path.join(__dirname, 'output'); // Create output in the project root
 
 // Process files
 processDirectory(inputDir, outputDir); 
