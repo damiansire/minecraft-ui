@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selector de Valores Minecraft</title>
+    <title>Minecraft Value Selector</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
@@ -73,7 +73,7 @@
             white-space: nowrap;
         }
 
-        /* Estilos adicionales */
+        /* Additional styles */
         .value-selector {
             padding: 8px;
             border-radius: 8px;
@@ -112,13 +112,13 @@
             border: 2px solid #4b5563;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
             width: 5em;
-            /* Aumenta el ancho para acomodar la entrada */
+            /* Increase width to accommodate input */
         }
 
-        /* Estilo para el input dentro del display */
+        /* Style for input inside display */
         .value-input {
             width: 100%;
-            /* El input ocupa todo el ancho del contenedor */
+            /* Input takes full width of container */
             padding: 0;
             margin: 0;
             border: none;
@@ -127,13 +127,13 @@
             font-weight: 600;
             color: #ffdb58;
             background-color: transparent;
-            /* Hace el fondo del input transparente */
+            /* Makes input background transparent */
             font-family: 'Press Start 2P', monospace;
-            /* Usa la misma fuente */
+            /* Use same font */
             outline: none;
-            /* Elimina el borde por defecto del input */
+            /* Remove default input border */
             height: 1.5em;
-            /* Asegura que el input tenga la misma altura que el display */
+            /* Ensure input has same height as display */
         }
     </style>
 </head>
@@ -155,31 +155,31 @@
         const valueDisplay = document.querySelector('.value-display');
         const decreaseButton = document.querySelector('[data-action="decrease"]');
         const increaseButton = document.querySelector('[data-action="increase"]');
-        const valueInput = document.querySelector('.value-input'); // Obtén el input
+        const valueInput = document.querySelector('.value-input'); // Get the input
 
 
         let currentValue = 100;
 
-        valueInput.value = currentValue;  // Inicializa el valor del input
+        valueInput.value = currentValue;  // Initialize input value
 
         decreaseButton.addEventListener('click', () => {
             currentValue = Math.max(0, currentValue - 1);
-            valueInput.value = currentValue; // Actualiza el valor del input
+            valueInput.value = currentValue; // Update input value
         });
 
         increaseButton.addEventListener('click', () => {
             currentValue = Math.min(100, currentValue + 1);
-            valueInput.value = currentValue; // Actualiza el valor del input
+            valueInput.value = currentValue; // Update input value
         });
 
-        // Agrega un evento de escucha para el input para manejar la entrada directa
+        // Add event listener for input to handle direct input
         valueInput.addEventListener('change', () => {
             let newValue = parseInt(valueInput.value);
             if (isNaN(newValue)) {
-                newValue = 0; // Si no es un número, establece el valor a 0
+                newValue = 0; // If not a number, set value to 0
             }
-            currentValue = Math.max(0, Math.min(100, newValue)); // Valida el rango
-            valueInput.value = currentValue; // Actualiza el input con el valor validado
+            currentValue = Math.max(0, Math.min(100, newValue)); // Validate range
+            valueInput.value = currentValue; // Update input with validated value
         });
     </script>
 </body>

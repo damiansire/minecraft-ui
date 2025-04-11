@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estilo de Input Minecraft</title>
+    <title>Minecraft Input Style</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,45 +12,64 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #222; /* Un gris oscuro de fondo */
-            font-family: 'Press Start 2P', monospace; /* Fuente estilo Minecraft */
+            background-color: #222;
+            /* Dark gray background */
+            font-family: 'Press Start 2P', monospace;
+            /* Minecraft style font */
         }
 
         .input-container {
-            margin-bottom: 20px; /* Espacio entre los inputs */
+            margin-bottom: 20px;
+            /* Space between inputs */
         }
 
         .input-container label {
             display: block;
             margin-bottom: 5px;
-            color: #ddd; /* Texto casi blanco */
-            font-size: 0.8em; /* Tamaño de fuente más pequeño */
-            text-shadow: 1px 1px 0 #000; /* Sombra del texto para mejor legibilidad */
+            color: #ddd;
+            /* Almost white text */
+            font-size: 0.8em;
+            /* Smaller font size */
+            text-shadow: 1px 1px 0 #000;
+            /* Text shadow for better readability */
         }
 
         .minecraft-input {
             padding: 10px;
-            border: 2px solid #333; /* Borde más oscuro */
-            background-color: #111; /* Fondo negro */
-            color: #fff; /* Texto blanco */
-            font-family: 'Press Start 2P', monospace; /* Fuente estilo Minecraft */
-            font-size: 1em; /* Tamaño de fuente base */
-            width: 250px; /* Ancho fijo */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombra sutil */
-            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
-            outline: none; /* Elimina el borde de enfoque predeterminado */
+            border: 2px solid #333;
+            /* Darker border */
+            background-color: #111;
+            /* Black background */
+            color: #fff;
+            /* White text */
+            font-family: 'Press Start 2P', monospace;
+            /* Minecraft style font */
+            font-size: 1em;
+            /* Base font size */
+            width: 250px;
+            /* Fixed width */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            /* Subtle shadow */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            /* Smooth transitions */
+            outline: none;
+            /* Remove default focus border */
         }
 
         .minecraft-input:focus {
-            border-color: #50fa7b; /* Verde neón al hacer foco */
-            box-shadow: 0 0 10px rgba(80, 250, 123, 0.5); /* Resplandor al hacer foco */
+            border-color: #50fa7b;
+            /* Neon green on focus */
+            box-shadow: 0 0 10px rgba(80, 250, 123, 0.5);
+            /* Glow on focus */
         }
 
         .minecraft-input::placeholder {
-            color: #555; /* Color del placeholder más oscuro */
+            color: #555;
+            /* Darker placeholder color */
         }
     </style>
 </head>
+
 <body>
     <div class="input-container">
         <label for="server-name">Server Name</label>
@@ -61,4 +80,5 @@
         <input type="text" id="server-address" class="minecraft-input" placeholder="Enter server address">
     </div>
 </body>
+
 </html>
